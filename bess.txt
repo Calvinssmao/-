@@ -1,0 +1,30 @@
+down=-20; up=20;
+gap=0.01;
+num=(up-down)/gap+1;
+[x,y]=meshgrid(down:gap:up);
+r0=5;  n=3;
+r=sqrt(x.^2+y.^2);
+theta=-atan2(y,x);
+for i=1:num
+    for j=1:num
+        if theta(i,j)<0
+            theta(i,j)=theta(i,j)+2*pi;
+        end
+    end
+end
+Tn=n.*theta-2.*pi.*r./r0;
+for i=1:num
+    for j=1:num
+        while Tn(i,j)<0
+            Tn(i,j)=Tn(i,j)+2*pi;
+        end
+        while Tn(i,j)>2*pi
+            Tn(i,j)=Tn(i,j)-2*pi;
+        end
+    end
+end
+meshc(x,y,Tn);
+axis('equal');
+view(0,90);
+colormap gray;
+saveas(gcf,'n=3.jpg');

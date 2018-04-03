@@ -46,4 +46,4 @@ def run_Holographic(col, raw):
 	plt.savefig("test.png")
 	plt.show()
 
-run_Holographic(col=2000, raw=2000)
+run_Holographic(col=20, raw=20)
